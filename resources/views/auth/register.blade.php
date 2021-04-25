@@ -1,77 +1,79 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+@extends('layouts.frontend')
+@section('title','Signup')
+@section('main-content')
+<div class="nk-main">
+  <div class="nk-gap-2"></div>
+  <div class="nk-gap-2"></div>
+    <div class="col-lg-4 col-md-4 col-sm-12 ml-auto mr-auto">
+      <div class="nk-card nk-box-2 bg-dark-2">
+          <h4>REGISTER</h4>
+         Create your account
+         <form action="{{route('register')}}" method="POST">
+           @csrf
+            <div class="nk-gap-2"></div>
+            <div class="input-group">
+              <button class="nk-btn nk-btn-color-main-1">
+                <span class="fa fa-user"></span>
+              </button>
+              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror bg-white text-black" placeholder="Username">
+              @error('name')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
-        </div>
+
+            <div class="nk-gap-2"></div>
+            <div class="input-group">
+              <button class="nk-btn nk-btn-color-main-1">
+                <span class="fa fa-envelope"></span>
+              </button>
+              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror bg-white text-black" placeholder="Email">
+              @error('email')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+
+            <div class="nk-gap-2"></div>
+            <div class="input-group">
+              <button class="nk-btn nk-btn-color-main-1">
+                <span class="fa fa-lock"></span>
+              </button>
+              <input type="password" name="password" class="form-control @error('password') is-invalid @enderror bg-white text-black" placeholder="Enter Password">
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+
+            <div class="nk-gap-2"></div>
+            <div class="input-group">
+              <button class="nk-btn nk-btn-color-main-1">
+                <span class="fa fa-lock"></span>
+              </button>
+              <input type="password" name="password_confirmation" class="form-control bg-white text-black" placeholder="Confirm Password">
+            </div>
+
+            <div class="nk-gap-2"></div>
+            <div class="col-md-12 text-center">
+                <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-x2">
+                  Submit
+              </button>
+              <br>
+            </div>
+            <div class="nk-gap-2"></div>
+            <span>Already have account? <a href="" data-toggle="modal" data-target="#modalLogin">Login Here.</a></span>
+         </form>
+      </div>
     </div>
+    <div class="nk-gap-2"></div>
+  <div class="nk-gap-2"></div>
 </div>
+ <!-- START: Page Background -->
+
+ <div class="nk-page-background-fixed" style="background-image: url('frontend/assets/images/bg-fixed-1.jpg');"></div>
+ <!-- END: Page Background -->
 @endsection

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\SocialProvider;
 use App\Models\User;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -30,7 +31,19 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+    protected function redirectTo()
+    {
+        if(Auth::user()->hasRole('admin'))
+        {
+            return '/admin/dashboard';
+        }
+        else
+        {
+            return '/user/dashboard';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -67,7 +80,7 @@ class LoginController extends Controller
                 ['name' => $socialUser->getName()]
             );
     
-            $user->assignRole('client');
+            $user->assignRole('user');
     
             $user->social_provider()->create(
                 ['provider_id' => $socialUser->getId(), 'provider' => $provider]
@@ -79,6 +92,6 @@ class LoginController extends Controller
     
         auth()->login($user);
     
-        return redirect('/home');
+        return redirect('/user/home');
     }
 }

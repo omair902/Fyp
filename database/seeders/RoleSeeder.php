@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
         $role->save();
         
         $role=new Role;
-        $role->name="client";
+        $role->name="user";
         $role->save();
 
     }

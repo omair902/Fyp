@@ -1,47 +1,48 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+@extends('layouts.frontend')
+@section('title','Reset Password')
+@section('main-content')
+<div class="nk-main">
+  <div class="nk-gap-2"></div>
+  <div class="nk-gap-2"></div>
+    <div class="col-lg-4 col-md-4 col-sm-12 ml-auto mr-auto">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
         </div>
+    @endif
+      <div class="nk-card nk-box-2 bg-dark-2">
+          <h4>Reset Password</h4>
+         <form action="{{route('password.email')}}" method="POST">
+           @csrf
+            <div class="nk-gap-2"></div>
+            <div class="input-group">
+              <button class="nk-btn nk-btn-color-main-1">
+                <span class="fa fa-envelope"></span>
+              </button>
+              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror bg-white text-black" placeholder="Email">
+              @error('email')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+
+            <div class="nk-gap-2"></div>
+            <div class="col-md-12 text-center">
+                <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-x2">
+                  Send Password reset link
+              </button>
+              <br>
+            </div>
+        </form>
+      </div>
     </div>
 </div>
+ <!-- START: Page Background -->
+
+ <div class="nk-page-background-fixed" style="background-image: url('frontend/assets/images/bg-fixed-1.jpg');"></div>
+ <!-- END: Page Background -->
 @endsection
+                   
+
+                    
