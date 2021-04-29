@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Forum;
 use App\Models\SocialProvider;
 
 class User extends Authenticatable
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function social_provider()
     {
         return $this->hasMany(SocialProvider::class);
+    }
+
+    public function forum()
+    {
+        return $this->hasMany(Forum::class);
     }
 }

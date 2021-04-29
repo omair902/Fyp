@@ -38,6 +38,8 @@
                 <?php $segments .= '/'. Request::segment($i); ?>
                 @if($i < count(Request::segments()))
                   @if(Request::segment($i) == 'admin' || Request::segment($i) == 'user')
+                  @elseif(Request::segment($i) == 'edit')
+                    <li class="breadcrumb-item active">{{ucfirst( Request::segment($i)) }}</li>
                   @else
                     @if(Auth::user()->hasRole('admin'))
                     <li class="breadcrumb-item"><a href="/admin/{{Request::segment($i)}}">{{ucfirst( Request::segment($i) )}}</a></li>
